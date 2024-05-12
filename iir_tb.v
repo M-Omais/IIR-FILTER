@@ -22,16 +22,18 @@ module iir_tb;
         file_output = $fopen("output.txt", "w");
         
         // Reset the DUT
-        rst = 0;
+        rst = 1;
         x=0;
+        #10 rst = 0;
         #10 rst = 1;
         // Read input values from file and apply them to the DUT
         while (!$feof(file_handle)) begin
             scan_file = $fscanf(file_handle, "%b", input_value);
             if (scan_file == 1) begin
+                #20; // Wait for 5 time units
                 x = input_value;
                 $fdisplay (file_output,"%b",y);
-                #20; // Wait for 5 time units
+                
             end
         end
         
