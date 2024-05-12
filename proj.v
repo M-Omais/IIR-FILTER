@@ -7,7 +7,7 @@ module proj(
 wire [15:0] coeff_x0 =16'b0000100000000000; wire [15:0] coeff_x1=16'b0001000000000000; wire [15:0] coeff_x2=16'b0001100000000000; wire [15:0] coeff_x3=16'b0010000000000000; wire [15:0] coeff_x4=16'b0010100000000000;
      wire [15:0] coeff_x5=16'b0011000000000000;wire [15:0] coeff_y1=16'b0011100000000000; wire [15:0] coeff_y2=16'b0100000000000000; wire [15:0] coeff_y3=16'b0100000000000000;
 parameter [3:0] order=4'b0011;
-reg [15:0] ram [0:255];wire [12:0] delay_1y;wire [12:0] delay_2y;//wire [12:0] delay_3y;
+reg [15:0] ram [0:255];wire [12:0] out_2y;wire [12:0] out_3y;//wire [12:0] delay_3y;
 /*reg signed [12:0] delay_4y;reg signed [12:0] delay_5y;reg signed [12:0] delay_6y;reg signed [12:0] delay_7y;reg signed [12:0] delay_8y;
 reg signed [12:0] delay_9y;reg signed [12:0] delay_10y;reg signed [12:0] delay_11y;reg signed [12:0] delay_12y;reg signed [12:0] delay_13y;
 reg signed [12:0] delay_14y;*/
@@ -97,7 +97,7 @@ always @(posedge clk,negedge reset) begin
                 .a0(ram[2]),
                 .a1(ram[3]),
                 .b1(ram[16]),
-                .y(delay_1y)
+                .y(out_2y)
             );
             IIR r3(
                 .x(delay_1y),
@@ -106,7 +106,7 @@ always @(posedge clk,negedge reset) begin
                 .a0(ram[4]),
                 .a1(ram[5]),
                 .b1(ram[17]),
-                .y(delay_2y)
+                .y(out_3y)
             );
         end
         
