@@ -34,7 +34,7 @@ always @(*) begin
         end
     endcase
 end
-IIR i1(data_in,16'b0000100000000000,b0,a1,reset,clk,out1);
-IIR i2(out1,16'b0000100000000000,b1,a2,r2,clk,out2);
-IIR i3(out2,16'b0000100000000000,b2,a3,r3,clk,out3);
+IIR i1(data_in,b0,b1,b2,a1,a2,reset,clk,out1);
+IIR i2(out1,b3,b4,b5,b6,a3,a4,clk,out2);
+IIR i3(out2,b7,b8,b9,a5,a6,clk,out3);
 endmodule

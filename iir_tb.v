@@ -1,9 +1,9 @@
 module iir_tb;
-    reg [15:0] x,b0,b1,a1;
+    reg [15:0] x,b0,b1,b2,a1,a2;
     reg rst, clk;
     wire [15:0] y;
     
-    IIR i1(x ,b0,b1,a1, rst, clk, y);
+    IIR i1(x ,b0,b1,b2,a1,a2, rst, clk, y);
     
     // Clock generation
     initial clk = 0;
@@ -15,9 +15,12 @@ module iir_tb;
     integer scan_file;
     
 initial begin
-    b0 =16'b0000011000001010;
-    b1 =16'b0000011000001010;
-    a1 =16'b0000010000010100;
+    b0 =16'b0000000000001110;
+    b1 =16'b0000000000010001;
+    b2 =16'b0000000000001110;
+    a1 =16'b0000000111000000;
+    a2 =16'b0000011111110010;
+
         $dumpfile("waveform.vcd");
     $dumpvars(0, iir_tb);
         // Open the input file
