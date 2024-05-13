@@ -1,13 +1,13 @@
 % Define the sampling frequency and time vector
-fs = 2000; % Sampling frequency (Hz)
-t = 0:1/fs:0.05; % Time vector (1 second duration)
+fs = 100000; % Sampling frequency (Hz)
+t = 0:1/fs:0.00005; % Time vector (1 second duration)
 
 % Generate the input wave
-wave = 2+cos(2*pi*500*t) + cos(2*pi*1000*t);
+wave = 2+cos(2*pi*5000*t) + cos(2*pi*10000*t);
 
 % Design a low-pass IIR filter
-fc = 800; % Cutoff frequency (Hz)
-[b, a] = butter(1, fc/(fs/2), 'low'); % 1st-order Butterworth low-pass filter
+fc = 5000; % Cutoff frequency (Hz)
+[b, a] = butter(3, fc/(fs/2), 'low'); % 1st-order Butterworth low-pass filter
 
 % % Apply the IIR filter to the input wave
 filtered_wave = filter(b, a, wave);

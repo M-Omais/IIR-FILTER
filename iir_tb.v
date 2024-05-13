@@ -14,7 +14,7 @@ module iir_tb;
     reg [15:0] input_value;
     integer scan_file;
     
-    initial begin
+initial begin
     b0 =16'b0000011000001010;
     b1 =16'b0000011000001010;
     a1 =16'b0000010000010100;

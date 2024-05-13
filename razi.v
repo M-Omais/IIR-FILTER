@@ -1,37 +1,40 @@
-// module FILTER (
-//     input clk,
-//     input rst,
-//     input signed [16:0] passband_ripple, // (17-bit signed)
-//     input signed [16:0] stopband_attenuation, // (17-bit signed)
-//     input signed [16:0] passband_edge_freq, // (17-bit signed)
-//     input signed [16:0] stopband_edge_freq, // (17-bit signed)
-//     input signed [16:0] sampling_freq, // (17-bit signed)
-//     input [3:0] filter_order
+// module project3(
+//     input wire signed [15:0] x,
+//     input reset,clk,
+//     input wire signed [15:0] a1, input wire signed [15:0] a2,input wire signed [15:0] b0,input wire signed [15:0] b1,
+//     input wire signed [15:0] b2,output reg signed [15:0] y
+    
+// );  
+//     reg signed [15:0] z1; reg signed [15:0] z2;
+//     wire signed [15:0] p1;wire signed [15:0] p2;wire signed [15:0] p3;wire signed [15:0] p4;wire signed [15:0] p5;
+//     wire signed [15:0] a_1 = -a1;
+//     wire signed [15:0] a_2 = -a2;
+//     multiplier m1(b0,x,p1);
+//     multiplier m2(b1,x,p2);
+//     multiplier m3(b2,x,p3);
+//     multiplier m4(a_1,y,p4);
+//     multiplier m5(a_2,y,p5);
+// always @(posedge clk,negedge reset ) begin
+//     if(!reset) begin
+//         z1 <= 0;
+//         z2 <= 0;
+//     end
+// 	 else begin
+//   z1 <= p3+p5;
+//   z2 <= z1+p4+p2;
+// end
+// end
+// always @(*) begin
+//     y=z2+p1;
+// end
+// endmodule
+
+// module multiplier (
+//     input wire signed[15:0] a1, input wire signed [15:0] x,output reg signed [15:0] y
 // );
-
-//     reg signed [16:0] Wp,Ws,omega_p,omega_s;
-
-//     parameter C1 = 17'b11001001000111111; 
-//     parameter C2 = 17'b00000000000111111;
-
-//     // Approximation of tan()
-//     function [16:0] tan;
-//         input [16:0] x;
-//         begin
-//             if (x > 16'b01111111111111111) // Check if x > pi/2
-//                 tan = 17'h7FFF; // Max positive value
-//             else if (x < 17'b1000000000000000) // Check if x < -pi/2
-//                 tan = -17'h7FFF; // Max negative value
-//             else begin
-//                 tan = (x * C1) / C2;
-//             end
-//         end
-//     endfunction
-
-//     always @* begin
-//         omega_p = (2'b10 * C1 * passband_edge_freq) / sampling_freq;
-//         omega_s = (2'b10 * C1 * stopband_edge_freq) / sampling_freq;
-//         Wp = 2'b10 * sampling_freq * tan(omega_p >> 2'b01);//prewraped_freq
-//         Ws = 2'b10 * sampling_freq * tan(omega_s >> 2'b01);//prewrapped_freq
+//     reg signed [20:0] product;
+//     always@(*) begin
+//         product = a1*x;
+//         y = product[20:8];
 //     end
 // endmodule
