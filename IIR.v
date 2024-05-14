@@ -1,10 +1,10 @@
 module IIR (
-    input [15:0] x,b0,b1,b2,a1,a2,
-    input reset,clk,
-    output reg [15:0] y
+    input signed [15:0] x,b0,b1,b2,a1,a2,
+    input  reset,clk,
+    output reg signed [15:0] y
 );
-reg [15:0] x1,x2,y1,t1,t2,o1,o2;
-wire [15:0] p1,p2,p3,p4,p5;
+reg signed [15:0] x1,x2,y1,t1,t2,o1,o2;
+wire signed [15:0] p1,p2,p3,p4,p5;
 
 multiplier m1(b0,t2,p1);
 multiplier m2(b1,x1,p2);
@@ -24,6 +24,7 @@ always @(posedge clk or negedge reset) begin
         t1<=0;
         t2<=0;
         o1<=0;
+        o2<=0;
         x2<=0;
     end
     else begin
@@ -33,7 +34,8 @@ always @(posedge clk or negedge reset) begin
     t1<=x;
     t2<=t1;
     x1<=t2;
-    x2<=x1;
+    o2<=x1;
+    x2<=o2;
     end
 end
 endmodule

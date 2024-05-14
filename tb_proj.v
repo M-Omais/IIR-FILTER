@@ -1,7 +1,7 @@
 module proj_tb;
 
 // Inputs
-reg [15:0] x, b0, b1, b2,a1,a2,a3;
+reg [15:0] x, b0,b1,b2,b3,b4,b5,b6,b7,b8,a1,a2,a3,a4,a5,a6;
 reg reset, clk;
 reg [3:0] order;
 
@@ -9,19 +9,7 @@ reg [3:0] order;
 wire [15:0] y;
 
 // Instantiate the Unit Under Test (UUT)
-proj uut (
-    .data_in(x),
-    .b0(b0),
-    .b1(b1),
-    .b2(b2),
-    .a1(a1),
-    .a2(a1),
-    .a3(a2),
-    .reset(reset),
-    .clk(clk),
-    .order(order),
-    .data_out(y)
-);
+proj uut (x,b0,b1,b2,b3,b4,b5,b6,b7,b8,a1,a2,a3,a4,a5,a6,reset,clk,order,y);
 // Read input values from file
     integer file_handle,file_output;
     reg [15:0] input_value;
@@ -33,13 +21,22 @@ always #5 clk = ~clk;
 initial begin
     $dumpfile("waveform.vcd");
     $dumpvars(0, proj_tb);
-    b0 =16'b0000011000001010;
-    b1 =16'b0000011000001010;
-    b2 =16'b0000011000001010;
-    a1 =16'b0000011000001010;
-    a2 =16'b0000010000010100;
-    a3 =16'b0000010000010100;
-    
+    b0 =16'b0000000000000101;
+    b1 =16'b0000000000001000;
+    b2 =16'b0000000000000101;
+    b3 =16'b0000100000000000;
+    b4 =16'b0000100101011101;
+    b5 =16'b0000100000000000;
+    a1 =16'b1111100011100010;
+    a2 =16'b0000011111101011;
+    a3 =16'b0000010000100111;
+    a4 =16'b0000011111111101;
+    b6 =16'd0;
+    b7 =16'd0;
+    b8 =16'd0;
+    a5 =16'd0;
+    a6 =16'd0;
+    order=4'd2;
         // Open the input file
     file_handle = $fopen("wave.txt", "r");
     file_output = $fopen("output.txt", "w");

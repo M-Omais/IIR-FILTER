@@ -12,8 +12,3 @@ fixed_point_number = fi(floating_point_number, signed, word_length, fraction_len
 
 % Display the fixed-point number in binary format
 binary_representation = bin(fixed_point_number)
-
-% Display the fixed-point number in binary
-%disp(['Fixed-point binary representation: ', binary_representation]);
-
-[1,-0.509525449494429]
