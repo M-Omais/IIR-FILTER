@@ -1,0 +1,19 @@
+clear sending
+sending = serialport("COM12", 9600);
+
+% Open the file in binary mode
+fileID = fopen('input.txt', 'rb');
+% Read the file line by line
+tline = fgetl(fileID);
+lineNum = 1;
+while ischar(tline)
+    write(sending, highByte, "uint8");
+write(sending, lowByte, "uint8");
+    data = read(sending, length(tline) * 2, "string"); % Read the expected number of bytes
+    disp(['Line ' num2str(lineNum) ': ' data]);
+    % Read the next line
+    tline = fgetl(fileID);
+    lineNum = lineNum + 1;
+end
+fclose(fileID);
+clear sending;

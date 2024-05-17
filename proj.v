@@ -42,7 +42,23 @@ always @(*) begin
         endcase
     end
 end
-IIR i1(data_in,b0,b1,b2,a1,a2,reset,clk,out1);
-IIR i2(out1,b3,b4,b5,a3,a4,r2,clk,out2);
-IIR i3(out2,b6,b7,b8,a5,a6,r3,clk,out3);
+
+uart_rx uart_rx_inst (
+    .clk(clk),
+    .reset(reset),
+    .rx_data(rx_data),
+    .data_out(data_in)
+);
+
+IIR i1(data_in, b0, b1, b2, a1, a2, reset, clk, out1);
+IIR i2(out1, b3, b4, b5, a3, a4, r2, clk, out2);
+IIR i3(out2, b6, b7, b8, a5, a6, r3, clk, out3);
+
+uart_tx uart_tx_inst (
+    .clk(clk),
+    .reset(reset),
+    .data_in(out3),
+    .tx_data(tx_data)
+);
+
 endmodule

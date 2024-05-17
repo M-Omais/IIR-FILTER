@@ -4,7 +4,6 @@ t = 0:1/fs:0.05; % Time vector (1 second duration)
 
 % Generate the input wave
 wave = 2+cos(2*pi*500*t) + cos(2*pi*1000*t);
-
 % Design an elliptic low-pass filter
 fc = 1500; % Cutoff frequency (Hz)
 rp = 40; % Passband ripple (dB)
@@ -42,7 +41,9 @@ fclose(file_id);
 
 % Apply the cascade IIR filter to the input wave
 filtered_wave = sosfilt(sos,wave);
-
+[c,d]=fplot(filtered_wave,fs);
+figure;
+[e,f]=fplot(wave,fs);
 fopen("wave.txt", 'w');  % Open the file for writing
 for i = 1:length(wave)-1
     number = fi_to_bin(wave(i))
